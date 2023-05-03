@@ -34,7 +34,7 @@ int menu(){
         // Aquí iría el código para la opción 4
         break;
       case 5:
-        cout << " Ranking de cantantes" << endl;
+        cout << "Ranking de cantantes" << endl;
         // Aquí iría el código para la opción 5
         break;
       default:
