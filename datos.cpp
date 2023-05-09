@@ -30,7 +30,7 @@ int main() {
 
 void cargaDatos(std::vector <Song> songs) {
     ifstream archivo;
-    archivo.open("Spotify_final_dataset.txt");
+    archivo.open("/data/Spotify_final_dataset.txt");
     if (archivo.is_open()) {
         string temp; // variable temporal para leer cada campo
         getline(archivo, temp); // leer la primera línea (cabecera)
