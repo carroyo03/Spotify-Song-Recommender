@@ -1,37 +1,64 @@
 #include <iostream>
 #include "recomendador.hpp"
-#include "datos.hpp"
-void mostrarRecomendacion(std::vector <Song> songs){
-    std::vector <std::string> generos;int i = 0;
+
+
+using namespace std;
+
+
+void mostrarRecomendacion(vector <Song> songs){//@author Carlos Arroyo
+    vector <string> generos;int i = 0;
     for (Song s : songs){
-        for (std::string str : generos){
+        for (string str : generos){
             if(str == s.genero){
                 break;
             }
         }
         generos.push_back(s.genero);
     }
-    std::cout << "Elige tu género favorito"<< std::endl;
-    for (std::string genero : generos){
+    cout << "Elige tu género favorito"<< endl;
+    for (string genero : generos){
         i++;
-        std::cout<<i<<". "<<genero<<std::endl;
+        cout<<i<<". "<<genero<<endl;
     }
 
 }
 
-void mostrarCantantes(std::vector <Song> songs){
-    std::vector <std::string> cantantes;int i = 0;
-    for (Song s : songs){
-        for (std::string str : cantantes){
-            if(str == s.nombreArtista){
+void mostrarCantantes(vector <Song> songs){ //@author Gabriel Nassri and Carlos Arroyo
+
+ 
+    vector <string> cantantes;int i = 0;
+    for (int i=0; i<10;i++){
+        for (string str : cantantes){
+            if(str == songs[i].nombreArtista){
                 break;
             }
         }
-        cantantes.push_back(s.nombreArtista);
+        cantantes.push_back(songs[i].nombreArtista);
     }
-    std::cout << "Elige tu cantante favorito"<< std::endl;
-    for (std::string cantante : cantantes){
+    cout << "Elige tu cantante favorito"<< endl;
+    for (string cantante : cantantes){
         i++;
-        std::cout<<i<<". "<<cantante<<std::endl;
+        cout<<i<<". "<<cantante<<endl;
     }
 }
+
+
+
+void mostrarCancion(vector <Song> songs){ //@author Gabriel Nassri
+
+    vector <string> canciones;int i = 0;
+    for (int i=0; i<10;i++){
+        for (string str : canciones){
+            if(str == songs[i].nombreCancion){
+                break;
+            }
+        }
+        canciones.push_back(songs[i].nombreCancion);
+    }
+    cout << "Elige tu cancion favorita"<< endl;
+    for (string cancion : canciones){
+        i++;
+        cout<<i<<". "<<cancion <<endl;
+    }
+}
+
