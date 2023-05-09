@@ -1,9 +1,11 @@
+//@author Carlos Arroyo
+
 #ifndef DATOS_HPP
 #define DATOS_HPP
 #include <iostream>
 
 
-typedef struct {
+typedef struct { //@author Gabriel Nassri
     int posicion;
     std::string nombreArtista;
     std::string nombreCancion;

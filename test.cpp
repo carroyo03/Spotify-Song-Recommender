@@ -184,3 +184,491 @@ int main (){
         }
         archivo.close(); //(4)
     }
+
+
+
+
+
+/*
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+// Estructura de datos para almacenar información de las canciones
+struct Cancion {
+    string titulo;
+    string artista;
+    string genero;
+    int escuchas;
+};
+
+// Función para cargar datos del archivo de texto en un vector
+vector<Cancion> cargarDatos(string archivo) {
+    vector<Cancion> canciones;
+    ifstream ifs(archivo);
+    if (!ifs.is_open()) {
+        cerr << "No se puede abrir el archivo " << archivo << endl;
+        exit(EXIT_FAILURE);
+    }
+    string linea;
+    while (getline(ifs, linea)) {
+        Cancion cancion;
+        cancion.titulo = linea.substr(0, linea.find(","));
+        linea = linea.substr(linea.find(",") + 1);
+        cancion.artista = linea.substr(0, linea.find(","));
+        linea = linea.substr(linea.find(",") + 1);
+        cancion.genero = linea.substr(0, linea.find(","));
+        linea = linea.substr(linea.find(",") + 1);
+        cancion.escuchas = stoi(linea);
+        canciones.push_back(cancion);
+    }
+    ifs.close();
+    return canciones;
+}
+
+// Función para imprimir una lista de canciones
+void imprimirCanciones(vector<Cancion>& canciones) {
+    for (int i = 0; i < canciones.size(); i++) {
+        cout << i+1 << ". " << canciones[i].titulo << " - " << canciones[i].artista << endl;
+    }
+}
+
+// Función para imprimir una lista de artistas
+void imprimirArtistas(map<string, int>& artistas) {
+    int i = 1;
+    for (auto it = artistas.begin(); it != artistas.end(); it++) {
+        cout << i++ << ". " << it->first << " - " << it->second << " escuchas" << endl;
+    }
+}
+
+// Función para imprimir los géneros más populares y su porcentaje de participación
+void analizarGeneros(vector<Cancion>& canciones) {
+    map<string, int> generos;
+    int total = 0;
+    for (int i = 0; i < canciones.size(); i++) {
+        generos[canciones[i].genero]++;
+        total += canciones[i].escuchas;
+    }
+    cout << "Generos mas populares:" << endl;
+    for (auto it = generos.begin(); it != generos.end(); it++) {
+        float porcentaje = (it->second * 100.0f) / total;
+        cout << "- " << it->first << ": " << porcentaje << "%" << endl;
+    }
+}
+
+int main() {
+    // Cargar los datos del archivo de texto en un vector
+    vector<Cancion> canciones = cargarDatos("canciones.txt");
+
+    // Menú principal
+    while (true) {
+        cout << endl;
+        cout << "MENU:" << endl;
+        cout << "1. Salir" << endl;
+        cout << "2. Recomendador de canciones" << endl;
+        cout << "3. Recomendador de artistas" << endl;
+        cout << "4. Analista de estilo musical" << endl;
+        cout << "5. Ranking de cantantes" << endl;
+        int opcion;
+        cout << "Ingrese una opcion: ";
+        cin >> opcion
+
+    if (opcion == 1) {
+        break;
+    } else if (opcion == 2) {
+        // Recomendador de canciones
+        cout << "Ingrese el genero de musica que mas le gusta: ";
+        string genero;
+        cin.ignore();
+        getline(cin, genero);
+        vector<Cancion> recomendaciones;
+        for (int i = 0; i < canciones.size(); i++) {
+            if (canciones[i].genero == genero) {
+                recomendaciones.push_back(canciones[i]);
+            }
+        }
+        sort(recomendaciones.begin(), recomendaciones.end(),
+            [](const Cancion& a, const Cancion& b) -> bool {
+                return a.escuchas > b.escuchas;
+            });
+        cout << "Canciones recomendadas en el genero " << genero << ":" << endl;
+        imprimirCanciones(recomendaciones);
+    } else if (opcion == 3) {
+        // Recomendador de artistas
+        cout << "Ingrese el genero de musica que desea: ";
+        string genero;
+        cin.ignore();
+        getline(cin, genero);
+        map<string, int> artistas;
+        for (int i = 0; i < canciones.size(); i++) {
+            if (canciones[i].genero == genero) {
+                artistas[canciones[i].artista] += canciones[i].escuchas;
+            }
+        }
+        cout << "Artistas recomendados en el genero " << genero << ":" << endl;
+        imprimirArtistas(artistas);
+    } else if (opcion == 4) {
+        // Analista de estilo musical
+        analizarGeneros(canciones);
+    } else if (opcion == 5) {
+        // Ranking de cantantes
+        map<string, int> cantantes;
+        for (int i = 0; i < canciones.size(); i++) {
+            cantantes[canciones[i].artista] += canciones[i].escuchas;
+        }
+        cout << "Ranking de cantantes:" << endl;
+        imprimirArtistas(cantantes);
+    } else {
+        cout << "Opcion invalida" << endl;
+    }
+}
+
+return 0;
+*/
+
+
+
+
+
+
+
+// MAIN
+
+/*#include <iostream>
+#include "cancion.h"
+#include "recomendador.h"
+#include "analista.h"
+#include "ranking.h"
+
+using namespace std;
+
+int main() {
+    // Carga los datos del archivo de texto
+    vector<Cancion> canciones = cargarCanciones("canciones.txt");
+
+    int opcion = 0;
+
+    do {
+        // Muestra el menú y lee la opción del usuario
+        cout << "-------------------------" << endl;
+        cout << "Recomendador de canciones" << endl;
+        cout << "-------------------------" << endl;
+        cout << "1. Salir" << endl;
+        cout << "2. Recomendador de canciones" << endl;
+        cout << "3. Recomendador de artistas" << endl;
+        cout << "4. Analista de estilo musical" << endl;
+        cout << "5. Ranking de cantantes" << endl;
+
+        cout << "Ingrese su opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                // Salir del programa
+                cout << "Saliendo..." << endl;
+                break;
+            case 2:
+                // Recomendador de canciones
+                recomendadorCanciones(canciones);
+                break;
+            case 3:
+                // Recomendador de artistas
+                recomendadorArtistas(canciones);
+                break;
+            case 4:
+                // Analista de estilo musical
+                analistaEstiloMusical(canciones);
+                break;
+            case 5:
+                // Ranking de cantantes
+                rankingCantantes(canciones);
+                break;
+            default:
+                // Opción inválida
+                cout << "Opcion invalida. Intente de nuevo." << endl;
+        }
+    } while (opcion != 1);
+
+    return 0;
+}
+*/
+
+
+// CANCION.H
+
+/*#ifndef CANCION_H
+#define CANCION_H
+
+#include <string>
+#include <vector>
+
+using std::string;
+using std::vector;
+
+class Cancion {
+public:
+    Cancion(string t, string a, string g, int e) : titulo(t), artista(a), genero(g), escuchas(e) {}
+
+    string getTitulo() const { return titulo; }
+    string getArtista() const { return artista; }
+    string getGenero() const { return genero; }
+    int getEscuchas() const { return escuchas; }
+
+private:
+    string titulo;
+    string artista;
+    string genero;
+    int escuchas;
+};
+
+vector<Cancion> cargarCanciones(string archivo);
+
+#endif // CANCION_H
+*/
+
+
+// CANCION.CPP
+
+/*#include <iostream>
+#include <fstream>
+#include <sstream>
+#include "cancion.h"
+
+vector<Cancion> cargarCanciones(string archivo) {
+    vector<Cancion> canciones;
+
+    std::ifstream input(archivo);
+
+    if (!input) {
+        std::cerr << "Error al abrir el archivo " << archivo << std::endl;
+        return canciones;
+    }
+
+    string titulo, artista, genero, linea;
+    int escuchas;
+
+    while (getline(input, linea)) {
+        std::istringstream iss(linea);
+
+        if (iss >> titulo >> artista >> genero >> escuchas) {
+            Cancion cancion(titulo, artista, genero,
+* */
+
+
+// TERCERA OPCIÓN
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+struct Song {
+    string name;
+    string artist;
+    string genre;
+    int plays;
+};
+
+vector<Song> read_file(string filename) {
+    vector<Song> songs;
+    ifstream file(filename);
+    if (!file) {
+        cout << "Error: could not open file " << filename << endl;
+        return songs;
+    }
+    string line;
+    while (getline(file, line)) {
+        Song song;
+        int pos = line.find(",");
+        song.name = line.substr(0, pos);
+        line.erase(0, pos + 1);
+        pos = line.find(",");
+        song.artist = line.substr(0, pos);
+        line.erase(0, pos + 1);
+        pos = line.find(",");
+        song.genre = line.substr(0, pos);
+        line.erase(0, pos + 1);
+        song.plays = stoi(line);
+        songs.push_back(song);
+    }
+    file.close();
+    return songs;
+}
+
+void print_songs(vector<Song> songs) {
+    for (Song song : songs) {
+        cout << song.name << " - " << song.artist << " (" << song.genre << ") - " << song.plays << " plays" << endl;
+    }
+}
+
+vector<Song> filter_songs_by_genre(vector<Song> songs, string genre) {
+    vector<Song> filtered_songs;
+    for (Song song : songs) {
+        if (song.genre == genre) {
+            filtered_songs.push_back(song);
+        }
+    }
+    return filtered_songs;
+}
+
+vector<string> get_artists_by_genre(vector<Song> songs, string genre) {
+    vector<string> artists;
+    for (Song song : songs) {
+        if (song.genre == genre) {
+            bool found = false;
+            for (string artist : artists) {
+                if (artist == song.artist) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                artists.push_back(song.artist);
+            }
+        }
+    }
+    vector<int> plays(artists.size(), 0);
+    for (Song song : songs) {
+        for (int i = 0; i < artists.size(); i++) {
+            if (song.artist == artists[i] && song.genre == genre) {
+                plays[i] += song.plays;
+                break;
+            }
+        }
+    }
+    for (int i = 0; i < artists.size() - 1; i++) {
+        for (int j = i + 1; j < artists.size(); j++) {
+            if (plays[i] < plays[j]) {
+                swap(plays[i], plays[j]);
+                swap(artists[i], artists[j]);
+            }
+        }
+    }
+    return artists;
+}
+
+vector<Song> get_songs_by_genre(vector<Song> songs, string genre) {
+    vector<Song> filtered_songs = filter_songs_by_genre(songs, genre);
+    for (int i = 0; i < filtered_songs.size() - 1; i++) {
+        for (int j = i + 1; j < filtered_songs.size(); j++) {
+            if (filtered_songs[i].plays < filtered_songs[j].plays) {
+                swap(filtered_songs[i], filtered_songs[j]);
+            }
+        }
+    }
+    return filtered_songs;
+}
+
+int main() {
+    vector<Song> songs = read_file("songs.txt");
+    if (songs.empty()) {
+            return 0;
+}
+int option;
+do {
+    cout << "Menu:" << endl;
+    cout << "1. Salir" << endl;
+    cout << "2. Recomendador de canciones" << endl;
+    cout << "3. Recomendador de artistas" << endl;
+    cout << "4. Analista de estilo musical" << endl;
+    cout << "5. Ranking de cantantes" << endl;
+    cout << "Ingrese una opcion: ";
+    cin >> option;
+    switch (option) {
+        case 1:
+            break;
+        case 2: {
+            string genre;
+            cout << "Ingrese el genero que desea: ";
+            cin >> genre;
+            vector<Song> filtered_songs = get_songs_by_genre(songs, genre);
+            print_songs(filtered_songs);
+            break;
+        }
+        case 3: {
+            string genre;
+            cout << "Ingrese el genero que desea: ";
+            cin >> genre;
+            vector<string> artists = get_artists_by_genre(songs, genre);
+            for (string artist : artists) {
+                cout << artist << endl;
+            }
+            break;
+        }
+        case 4: {
+            vector<string> genres;
+            for (Song song : songs) {
+                bool found = false;
+                for (string genre : genres) {
+                    if (genre == song.genre) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    genres.push_back(song.genre);
+                }
+            }
+            for (string genre : genres) {
+                vector<Song> filtered_songs = filter_songs_by_genre(songs, genre);
+                int total_plays = 0;
+                for (Song song : filtered_songs) {
+                    total_plays += song.plays;
+                }
+                double avg_plays = total_plays / static_cast<double>(filtered_songs.size());
+                cout << genre << ": " << avg_plays << " plays por cancion" << endl;
+            }
+            break;
+        }
+        case 5: {
+            vector<string> artists;
+            for (Song song : songs) {
+                bool found = false;
+                for (string artist : artists) {
+                    if (artist == song.artist) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    artists.push_back(song.artist);
+                }
+            }
+            vector<int> plays(artists.size(), 0);
+            for (Song song : songs) {
+                for (int i = 0; i < artists.size(); i++) {
+                    if (song.artist == artists[i]) {
+                        plays[i] += song.plays;
+                        break;
+                    }
+                }
+            }
+            for (int i = 0; i < artists.size() - 1; i++) {
+                for (int j = i + 1; j < artists.size(); j++) {
+                    if (plays[i] < plays[j]) {
+                        swap(plays[i], plays[j]);
+                        swap(artists[i], artists[j]);
+                    }
+                }
+            }
+            for (int i = 0; i < artists.size(); i++) {
+                cout << i + 1 << ". " << artists[i] << " - " << plays[i] << " plays" << endl;
+            }
+            break;
+        }
+        default:
+            cout << "Opcion invalida" << endl;
+            break;
+    }
+} while (option != 1);
+return 0;
+
+
+

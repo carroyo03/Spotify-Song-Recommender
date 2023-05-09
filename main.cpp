@@ -4,7 +4,9 @@
 #include <iostream>
 using namespace std;
 
-int menu(){
+
+//@author Carlos Arroyo and Gabriel Nassri
+int menu(){   
   int opcion;
   
   do {
@@ -23,6 +25,7 @@ int menu(){
         break;
       case 2:
         cout << " Recomendador de canciones..." << endl;
+        mostrarCanciones(songs);
         // Aquí iría el código para la opción 2
         break;
       case 3:
