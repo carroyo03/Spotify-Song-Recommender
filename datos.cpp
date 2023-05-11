@@ -24,7 +24,7 @@ int main() {
     return 0;
 }
 
-void cargaDatos(std::vector <Song> songs) {
+void cargaDatos(vector <Song> songs) {
     ifstream archivo;
     archivo.open("/data/Spotify_final_dataset.txt");
     if (archivo.is_open()) {
