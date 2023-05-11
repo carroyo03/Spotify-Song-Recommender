@@ -184,3 +184,148 @@ int main (){
         }
         archivo.close(); //(4)
     }
+
+
+
+ /* // Generos: rap, pop, indie, soul y country
+void mostrarRanking(vector <Song> songs){ //@author Gabriel Nassri
+    string eleccion;
+    cout << "Elige un genero de estas 5 posibilidades : RAP, POP, INDIE, SOUL y COUNTRY. " << endl;
+    cin >> eleccion;
+    while ( eleccion != "RAP" || eleccion != "POP" || eleccion != "INDIE" || eleccion != "SOUL" || eleccion != "COUNTRY"){
+        cout << " El genero que ha elegido no se encuentra disponible o no ha sido escrito correctamente"
+        
+
+    }
+    vector <string> canciones;int i = 0;
+    for (int i=0; i<10;i++){
+        for (string str : canciones){
+            if((str == songs[i].nombreCancion) & (songs[i].genre == eleccion)){
+                cout<< songs[i].nombreCancion
+                break;
+            }
+        }
+        canciones.push_back(songs[i].nombreCancion);
+    }
+    cout << "Elige tu cancion favorita"<< endl;
+    for (string cancion : canciones){
+        i++;
+        cout<<i<<". "<<cancion <<endl;
+    }
+}
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// Estructura que representa una canción
+struct Song {
+    string title;
+    string artist;
+    string genre;
+    int year;
+    int duration; // en segundos
+};
+
+// Función para recomendar canciones en función del género
+vector<Song> recommend(vector<Song> database, string genre) {
+    vector<Song> result;
+
+    for (Song song : database) {
+        if (song.genre == genre) {
+            result.push_back(song);
+        }
+    }
+
+    return result;
+}
+
+// Función para recomendar canciones en función del artista
+vector<Song> recommend(vector<Song> database, string artist) {
+    vector<Song> result;
+
+    for (Song song : database) {
+        if (song.artist == artist) {
+            result.push_back(song);
+        }
+    }
+
+    return result;
+}
+
+// Función para recomendar canciones en función del año de lanzamiento
+vector<Song> recommend(vector<Song> database, int year) {
+    vector<Song> result;
+
+    for (Song song : database) {
+        if (song.year == year) {
+            result.push_back(song);
+        }
+    }
+
+    return result;
+}
+
+// Función para recomendar canciones en función de la duración
+vector<Song> recommend(vector<Song> database, int min_duration, int max_duration) {
+    vector<Song> result;
+
+    for (Song song : database) {
+        if (song.duration >= min_duration && song.duration <= max_duration) {
+            result.push_back(song);
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    // Supongamos que tenemos una base de datos de canciones
+    vector<Song> database = {
+        {"Bohemian Rhapsody", "Queen", "Rock", 1975, 355},
+        {"Stairway to Heaven", "Led Zeppelin", "Rock", 1971, 480},
+        {"Shape of You", "Ed Sheeran", "Pop", 2017, 233},
+        {"Despacito", "Luis Fonsi", "Reggaeton", 2017, 228},
+        {"Uptown Funk", "Mark Ronson ft. Bruno Mars", "Funk", 2014, 269},
+        {"Billie Jean", "Michael Jackson", "Pop", 1982, 295},
+        {"Hotel California", "Eagles", "Rock", 1976, 391},
+        {"Livin' on a Prayer", "Bon Jovi", "Rock", 1986, 248},
+        {"Imagine", "John Lennon", "Pop", 1971, 181}
+    };
+
+    // Recomendamos canciones en función del género
+    vector<Song> rock_songs = recommend(database, "Rock");
+    cout << "Canciones de rock recomendadas:" << endl;
+for (Song song : rock_songs) {
+    cout << "- " << song.title << " (" << song.artist << ")" << endl;
+}
+
+// Recomendamos canciones en función del artista
+vector<Song> michael_jackson_songs = recommend(database, "Michael Jackson");
+cout << endl << "Canciones de Michael Jackson recomendadas:" << endl;
+for (Song song : michael_jackson_songs) {
+    cout << "- " << song.title << " (" << song.year << ")" << endl;
+}
+
+// Recomendamos canciones en función del año de lanzamiento
+vector<Song> songs_from_1971 = recommend(database, 1971);
+cout << endl << "Canciones de 1971 recomendadas:" << endl;
+for (Song song : songs_from_1971) {
+    cout << "- " << song.title << " (" << song.artist << ")" << endl;
+}
+
+// Recomendamos canciones en función de la duración
+vector<Song> short_songs = recommend(database, 0, 240);
+cout << endl << "Canciones cortas recomendadas:" << endl;
+for (Song song : short_songs) {
+    cout << "- " << song.title << " (" << song.duration << " segundos)" << endl;
+}
+
+return 0;
+
+*/
