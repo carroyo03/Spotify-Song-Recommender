@@ -1,6 +1,7 @@
 #ifndef DATOS_HPP
 #define DATOS_HPP
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
