@@ -60,4 +60,46 @@ void cargaDatos(vector <Song> songs) {
     }
 }
 
+// Código para guardar columnas del .txt en diferentes vectores
+// #include <sstream>
+/* ifstream archivo("nombre_del_archivo.txt");
+    if (!archivo.is_open()) {
+        cout << "Error al abrir el archivo" << endl;
+        return 1;
+    }
+    
+    string linea;
+    getline(archivo, linea); // Leer la primera línea con los nombres de las columnas
 
+    vector<string> nombres_columnas;
+    vector<string> columna_cantante;
+    vector<string> columna_cancion;
+    vector<int> columna_escuchas;
+
+    // Separar los nombres de las columnas y guardarlos en el vector nombres_columnas
+    stringstream ss_nombres(linea);
+    string nombre_columna;
+    while (getline(ss_nombres, nombre_columna, ',')) {
+        nombres_columnas.push_back(nombre_columna);
+    }
+
+    // Leer el resto del archivo de texto y almacenar los datos en los vectores correspondientes
+    while (getline(archivo, linea)) {
+        stringstream ss(linea);
+        string cantante, cancion, escuchas_str;
+        getline(ss, cantante, ',');
+        getline(ss, cancion, ',');
+        getline(ss, escuchas_str, ',');
+        int escuchas = stoi(escuchas_str);
+
+        columna_cantante.push_back(cantante);
+        columna_cancion.push_back(cancion);
+        columna_escuchas.push_back(escuchas);
+    }
+
+    // Imprimir los datos almacenados en los vectores
+    for (int i = 0; i < columna_cantante.size(); ++i) {
+        cout << "Cantante: " << columna_cantante[i]
+                  << ", Cancion: " << columna_cancion[i]
+                  << ", Escuchas Totales: " << columna_escuchas[i] << endl;
+    }*/

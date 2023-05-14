@@ -10,7 +10,7 @@ int menu(){
     cout << "1. Salir" << endl;
     cout << "2. Recomendador de canciones" << endl;
     cout << "3. Recomendador de artistas" << endl;
-    cout << "4. Analista de estilo musical" << endl;
+    cout << "4. Análisis de canción" << endl;
     cout << "5. Ranking de cantantes" << endl;
     cout << "Ingrese su opción (1-5): ";
     cin >> opcion;
@@ -20,19 +20,19 @@ int menu(){
         cout << "Saliendo del programa..." << endl;
         break;
       case 2:
-        cout << " Recomendador de canciones..." << endl;
+        cout << "Recomendador de canciones..." << endl;
         // Aquí iría el código para la opción 2
         break;
       case 3:
-        cout << " Recomendador de artistas..." << endl;
+        cout << "Recomendador de artistas..." << endl;
         // Aquí iría el código para la opción 3
         break;
       case 4:
-        cout << "Analisis de estilo musical..." << endl;
+        cout << "Análisis de canción" << endl;
         // Aquí iría el código para la opción 4
         break;
       case 5:
-        cout << "Ranking de cantantes" << endl;
+        cout << "Rankings" << endl;
         // Aquí iría el código para la opción 5
         break;
       default:

@@ -2,6 +2,6 @@
 #define RECOMENDADOR_HPP
 
 
-void mostrarRecomendacion(),mostrarCantantes();
+void mostrarRecomendacion(),mostrarCantantes(), mostrarCancion(), mostrarRanking();
 
 #endif // !RECOMENDADOR_HPP
