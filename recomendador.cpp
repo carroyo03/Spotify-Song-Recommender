@@ -86,6 +86,7 @@ void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Car
 
    switch (opcion){
         case 1: // Ranking de canciones por cantante
+
             for (Song s : songs){
                 cantantes.push_back(s.nombreArtista);
             }
@@ -122,6 +123,7 @@ void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Car
             break;
 
         case 2: // Ranking de canciones por género
+
             for (Song s : songs){
                 generos.push_back(s.genero);
             }
@@ -144,7 +146,9 @@ void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Car
                 posiciones.push_back(pos);
                 it = find(++it, generos.end(), genero);
             }
+            cout << "-----------------------------------------------\n";
             cout << "Ranking de canciones del género "<< genero << endl;
+            cout << "-----------------------------------------------\n";
             for (int i = 0; i < sizeof(posiciones); i++){
                 canciones.push_back(songs[posiciones[i]]);
                 cout << canciones[i].posicion << ". " << canciones[i].nombreCancion << endl;
@@ -160,7 +164,7 @@ void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Car
             break;
 
         case 3: //Ranking de artistas por género
-            
+    
             for (Song s : songs){
                 generos.push_back(s.genero);
             }
