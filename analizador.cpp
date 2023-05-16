@@ -5,16 +5,13 @@
 vector <Song> cancionesSugeridas(){} 
 vector <Song> artistasSugeridos(){}
 
-void analisisCancion(vector <Song> songs){ //Elena
-    int eleccion;
-    vector <string> canciones; 
 
-    int i = 0;
-
-
-}
-
-void mostrarCanciones(){
-    
-}
+class Analizador{
+    public:
+        void analizarCancionesRec(){}
+        void analizarArtistasRec(){}
+        void Rankings1(){}
+        void Rankings2(){}
+        void Rankings3(){}
+};
 

@@ -1,10 +1,16 @@
 #include <iostream>
-#include "recomendador.hpp"
-#include "datos.hpp"
-#include "analizador.hpp"
 #include <utility>
 #include <algorithm>
+#include "recomendador.hpp"
+#include "main.hpp"
+#include "analizador.hpp"
 
+
+
+
+class Analizador : public baseRA{
+
+public:
 
 void mostrarRecomendacion(vector <Song> songs){
     vector <string> generos;int i = 0;
@@ -59,23 +65,63 @@ void mostrarCancion(vector <Song> songs){ //@author Gabriel Nassri
     }
 }
 
+
+
+void analizarCancion(vector <Song> songs){
+    string cancion;
+    vector <string> canciones;
+    vector <int> posiciones;
+    bool encontrado = false;
+
+    for (Song s : songs){
+                canciones.push_back(s.nombreArtista);
+    }
+
+
+    cout << "Introduce el nombre de la canción la cual quieres analizar: " << endl;
+    cin >> cancion;
+    do{
+        encontrado = find(begin(canciones), end(canciones), cancion) != end(canciones);
+        if(!encontrado){
+                cout << "Canción no encontrada. "<<
+                "Introduce una canción adecuada: \n";
+                cin >> cancion;
+        }
+
+    }while(!encontrado);
+
+    auto it = find(canciones.begin(), canciones.end(), canciones);
+    int pos = distance(canciones.begin(), it);
+
+    cout << "--------------------------------------\n";
+    cout << "Datos sobre la canción "<<songs[pos].nombreCancion << endl;
+    cout << "--------------------------------------\n";
+    cout << "Artista: " << songs[pos].nombreArtista << endl;
+    cout << "Género: "<< songs[pos].genero << endl;
+    cout << "Streams Totales: " << songs[pos].streamTotales << endl;
+}
+
+};
+
 void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Carlos Arroyo
     //Variables comunes a todos los casos
-    int opcion;
+    int opcion; 
     bool encontrado = false;
     vector <Song> canciones;
     //Variables para el caso 1
     string cantante;    
     vector <string> cantantes; 
     vector <int> posiciones;
-    //Variables para el caso 2
 
+    //Variables para el caso 2
     string genero; 
     vector <string> generos;
     
     //Variables para el caso 3
     vector <pair<string,int>> cantantes2;
     //vector <string> cantantes;
+
+    
    
    cout << "Elige el tipo de Ranking: " << endl;
    cout << "    1. Ranking de canciones por cantante\n";

@@ -1,10 +1,15 @@
-#ifndef DATOS_HPP
-#define DATOS_HPP
+#ifndef MAIN_HPP
+#define MAIN_HPP
+
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
+
+
+  
 typedef struct {
     int posicion;
     string nombreArtista;
@@ -18,8 +23,8 @@ typedef struct {
 
 vector <Song> songs;
 
+void menu();
+
 void cargaDatos(Song songs[]);
 
-#endif // !DATOS_HPP
-
-
+#endif // !MAIN_HPP
