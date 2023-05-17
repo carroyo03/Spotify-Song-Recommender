@@ -8,11 +8,11 @@
 
 
 
-class Analizador : public baseRA{
+class Recomendador: public database {
 
 public:
 
-void mostrarRecomendacion(vector <Song> songs){
+void Recomendador::mostrarRecomendacion(vector <Song> songs){
     vector <string> generos;int i = 0;
     for (Song s : songs){
         for (string str : generos){
@@ -22,7 +22,7 @@ void mostrarRecomendacion(vector <Song> songs){
         }
         generos.push_back(s.genero);
     }
-    cout << "Elige tu género favorito"<< endl;
+    cout << "Elige tu género favorito (RAP, POP, INDIE, SOUL o COUNTRY): "<< endl;
     for (string genero : generos){
         i++;
         cout<<i<<". "<<genero<<endl;
@@ -30,7 +30,7 @@ void mostrarRecomendacion(vector <Song> songs){
 
 }
 
-void mostrarCantantes(vector <Song> songs){
+void Recomendador::mostrarCantantes(vector <Song> songs){
     vector <string> cantantes;int i = 0;
     for (Song s : songs){
         for (string str : cantantes){
@@ -47,7 +47,7 @@ void mostrarCantantes(vector <Song> songs){
     }
 }
 
-void mostrarCancion(vector <Song> songs){ //@author Gabriel Nassri
+void Recomendador::mostrarCancion(vector <Song> songs){ //@author Gabriel Nassri
 
     vector <string> canciones;int i = 0;
     for (int i=0; i<10;i++){
@@ -67,14 +67,14 @@ void mostrarCancion(vector <Song> songs){ //@author Gabriel Nassri
 
 
 
-void analizarCancion(vector <Song> songs){
+void Recomendador::analizarCancion(vector <Song> songs){
     string cancion;
     vector <string> canciones;
     vector <int> posiciones;
     bool encontrado = false;
 
     for (Song s : songs){
-                canciones.push_back(s.nombreArtista);
+        canciones.push_back(s.nombreArtista);
     }
 
 
@@ -173,13 +173,13 @@ void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Car
             for (Song s : songs){
                 generos.push_back(s.genero);
             }
-            cout << "Introduce un género para ver el Ranking de canciones más escuchadas: " << endl;
+            cout << "Introduce un género para ver el Ranking de canciones más escuchadas (RAP, POP, INDIE, SOUL o COUNTRY): " << endl;
             cin >> genero;
             do{
                 encontrado = find(begin(generos), end(generos),genero) != end(generos);
                 if(!encontrado){
                         cout << "Género no encontrado. "<<
-                        "Introduce el nombre del género para ver su Ranking de canciones más escuchadas: \n";
+                        "Introduce el nombre del género para ver su Ranking de canciones más escuchadas (RAP, POP, INDIE, SOUL o COUNTRY): \n";
                         cin >> genero;
                 }
 
@@ -214,13 +214,13 @@ void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Car
             for (Song s : songs){
                 generos.push_back(s.genero);
             }
-            cout << "Introduce un género para ver el Ranking de artistas más escuchados: " << endl;
+            cout << "Introduce un género para ver el Ranking de artistas más escuchados (RAP, POP, INDIE, SOUL o COUNTRY): " << endl;
             cin >> genero;
             do{
                 encontrado = find(begin(generos), end(generos),genero) != end(generos);
                 if(!encontrado){
                         cout << "Género no encontrado. "<<
-                        "Introduce el nombre del género para ver su Ranking de artistas más escuchadas: \n";
+                        "Introduce el nombre del género para ver su Ranking de artistas más escuchadas (RAP, POP, INDIE, SOUL o COUNTRY): \n";
                         cin >> genero;
                 }
 

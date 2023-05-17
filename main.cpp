@@ -1,10 +1,10 @@
 #include "main.hpp"
 
 
-
 int main(){
     menu();
     return 0;
+    srand(time(nullptr));
 }
 
 void menu(){
