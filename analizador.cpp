@@ -2,22 +2,20 @@
 
 
 
-vector <Song> cancionesSugeridas(){} 
-vector <Song> artistasSugeridos(){}
 
 
-class database{
-    database::database(vector <Song> songss){
-        songs = songss;
-    }
-};
 
 
-class Analizador:public database{   
-    public:
+database::database(vector <Song> songss){
+    songs = songss;
+}
+
+
+
+
         vector <string> Analizador::analizarCancionesRec(vector <Song> songs){
             string genero; 
-            vector <string> generos = {"POP","RAP", "INDIE", "SOUL", "COUNTRY" }; //vector <string> generos = {"POP","RAP", "INDIE", "SOUL", "COUNTRY" };
+            vector <string> generos; //= {"POP","RAP", "INDIE", "SOUL", "COUNTRY" }; //vector <string> generos = {"POP","RAP", "INDIE", "SOUL", "COUNTRY" };
             bool encontrado = false;
             vector <int> posiciones;
             vector <string> cancionesRec;
@@ -103,5 +101,5 @@ class Analizador:public database{
         void Analizador::Rankings1(){}
         void Analizador::Rankings2(){}
         void Analizador::Rankings3(){}
-};
+
 

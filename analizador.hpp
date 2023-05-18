@@ -22,7 +22,7 @@ class database
 class Analizador: public database{
 
     public:
-        using database::database;
+        //using database::database;
         vector <string> analizarCancionesRec(vector <Song> songs);
         vector <string> analizarArtistasRec(vector <Song> songs);
         void Rankings1();
