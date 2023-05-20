@@ -5,14 +5,17 @@
 #include "main.hpp"
 
 
+Recomendador::Recomendador(vector <Song> songss){
+    songs = songss;
+}
 
 
 
-class Recomendador: public database {
 
-public:
 
-void Recomendador::mostrarRecomendacion(vector <Song> songs){
+
+
+/*void Recomendador::mostrarRecomendacion(vector <Song> songs){
     vector <string> generos;int i = 0;
     for (Song s : songs){
         for (string str : generos){
@@ -64,8 +67,31 @@ void Recomendador::mostrarCancion(vector <Song> songs){ //@author Gabriel Nassri
         cout<<i<<". "<<cancion <<endl;
     }
 }
+*/
+void Recomendador::mostrarCancionesRec(vector <Song> songs){
+    Analizador a(songs);
+    vector <string> cancionesRec = a.analizarCancionesRec(songs);
+    cout << "--------------------------------\n";
+    cout << "CANCIONES RECOMENDADAS\n";
+    cout << "--------------------------------\n";
+    for (int i = 0; i < cancionesRec.size(); i++){
+        cout << cancionesRec[i] << endl;
+    }
+}
 
 
+void Recomendador::mostrarArtistasRec(vector <Song> songs)
+{
+    Analizador a(songs);
+    vector <string> artistasRec = a.analizarArtistasRec(songs);
+    cout << "--------------------------------\n";
+    cout << "ARTISTAS RECOMENDADOS\n";
+    cout << "--------------------------------\n";
+    for (int i = 0; i < artistasRec.size(); i++){
+        cout << artistasRec[i] << endl;
+    }
+
+}
 
 void Recomendador::analizarCancion(vector <Song> songs){
     string cancion;
@@ -101,9 +127,9 @@ void Recomendador::analizarCancion(vector <Song> songs){
     cout << "Streams Totales: " << songs[pos].streamTotales << endl;
 }
 
-};
 
-void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Carlos Arroyo
+
+void Recomendador::mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Carlos Arroyo
     //Variables comunes a todos los casos
     int opcion; 
     bool encontrado = false;
@@ -118,7 +144,7 @@ void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Car
     vector <string> generos;
     
     //Variables para el caso 3
-    vector <pair<string,int>> cantantes2;
+    vector <pair <string,int> > cantantes2;
     //vector <string> cantantes;
 
     
@@ -131,7 +157,7 @@ void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Car
 
 
    switch (opcion){
-        case 1: // Ranking de canciones por cantante
+        case 1: {   // Ranking de canciones por cantante
 
             for (Song s : songs){
                 cantantes.push_back(s.nombreArtista);
@@ -167,8 +193,8 @@ void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Car
             canciones.clear();
             
             break;
-
-        case 2: // Ranking de canciones por género
+        }
+        case 2: {    // Ranking de canciones por género
 
             for (Song s : songs){
                 generos.push_back(s.genero);
@@ -195,7 +221,7 @@ void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Car
             cout << "-----------------------------------------------\n";
             cout << "Ranking de canciones del género "<< genero << endl;
             cout << "-----------------------------------------------\n";
-            for (int i = 0; i < sizeof(posiciones); i++){
+            for (int i = 0; i < posiciones.size(); i++){
                 canciones.push_back(songs[posiciones[i]]);
                 cout << canciones[i].posicion << ". " << canciones[i].nombreCancion << endl;
             }
@@ -204,12 +230,10 @@ void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Car
             canciones.clear();
 
             break;
-        default:
-            cout <<"Opción incorrecta.\n" << endl;
-            mostrarRanking(songs);
-            break;
+        }
+       
 
-        case 3: //Ranking de artistas por género
+        case 3: {//Ranking de artistas por género
     
             for (Song s : songs){
                 generos.push_back(s.genero);
@@ -251,7 +275,7 @@ void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Car
                 cantantes2.push_back(make_pair(s.nombreArtista,s.streamTotales));   
             }
             
-            sort(cantantes2.begin(), cantantes2.end(), [](const auto& a, const auto& b){return a.second > b.second;});
+            sort(cantantes2.begin(), cantantes2.end(), [](const pair<string,int>& a, const pair<string,int>& b){return a.second > b.second;});
 
             for (int i = 0; i < sizeof(cantantes2); i++){
                 cout << i + 1  << ". " << cantantes2[i].first<< " Con un total de " << cantantes2[i].second << "streams totales" << endl;
@@ -262,9 +286,17 @@ void mostrarRanking(vector <Song> songs){ //@author Juan Carlos Estefanía y Car
             generos.clear();
 
             break;
-
+        }
+         default:{
+            cout <<"Opción incorrecta.\n" << endl;
+            mostrarRanking(songs);
+            break;
+         }
+   
    }
 }
+
+
 
 
 

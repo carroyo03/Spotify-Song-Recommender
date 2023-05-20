@@ -3,8 +3,10 @@
 #include "analizador.hpp"
 
 class Recomendador : public database {
-    using database::database;
-    void mostrarRecomendacion(),mostrarCantantes(), mostrarCancion(), mostrarRanking();
+    public:
+        Recomendador (vector <Song> songs);
+        ~Recomendador();
+        void analizarCancion(vector <Song> songs), mostrarRanking(vector <Song> songs), mostrarCancionesRec(vector <Song> songs), mostrarArtistasRec(vector <Song> songs);
 };
 
 

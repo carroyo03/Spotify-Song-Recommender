@@ -10,9 +10,6 @@
 // Clase abstracta que contendrá el vector songs
 class database
 {
-    public:
-        database(vector <Song> songs);
-        virtual ~database();
     protected:
         vector <Song> songs;
         
@@ -23,6 +20,8 @@ class Analizador: public database{
 
     public:
         //using database::database;
+        Analizador(vector <Song> songs);
+        ~Analizador();
         vector <string> analizarCancionesRec(vector <Song> songs);
         vector <string> analizarArtistasRec(vector <Song> songs);
         void Rankings1();

@@ -6,10 +6,9 @@
 
 
 
-database::database(vector <Song> songss){
+Analizador::Analizador(vector <Song> songss){
     songs = songss;
 }
-
 
 
 
