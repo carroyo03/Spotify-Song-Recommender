@@ -23,10 +23,10 @@ typedef struct {
     string genero;
 } Song;
 
-vector <Song> songs;
 
-void menu();
 
-void cargaDatos(Song songs[]);
+int menu();
+
+void cargaDatos(vector<Song>& songs);
 
 #endif // !MAIN_HPP

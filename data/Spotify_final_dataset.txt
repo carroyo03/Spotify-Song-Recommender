@@ -1,5 +1,5 @@
 Position   Artist Name   Song Name   Days   Top 10 (xTimes)   Peak Position   Peak Streams   Total Streams   Genre
-1   Post Malone    Sunflower  SpiderMan: Into the SpiderVerse   1506   302.0   1   2118242   883369738   RAP
+1   Post Malone    Sunflower  SpiderMan: Into the Spider-Verse   1506   302.0   1   2118242   883369738   RAP
 2   Juice WRLD    Lucid Dreams   1673   178.0   1   2127668   864832399   RAP
 3   Lil Uzi Vert    XO TOUR Llif3   1853   212.0   1   1660502   781153024   RAP
 4   J. Cole    No Role Modelz   2547   6.0   7   659366   734857487   RAP

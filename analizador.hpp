@@ -4,8 +4,15 @@
 #include <iostream>
 #include <utility>
 #include <algorithm>
+#include <vector>
 #include "main.hpp"
 
+
+typedef struct{
+    vector <Song> cancioness;
+    vector <int> posiciones;
+    string str;
+}Rankings;
 
 // Clase abstracta que contendrá el vector songs
 class database
@@ -24,9 +31,9 @@ class Analizador: public database{
         ~Analizador();
         vector <string> analizarCancionesRec(vector <Song> songs);
         vector <string> analizarArtistasRec(vector <Song> songs);
-        void Rankings1();
-        void Rankings2();
-        void Rankings3();
+        Rankings Rankings1(vector <Song> songs);
+        Rankings Rankings2(vector <Song> songs);
+        vector <pair <string,int> > Rankings3(vector <Song> songs);
 };
 
 
