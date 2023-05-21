@@ -1,20 +1,17 @@
-
-
-
 #include "main.hpp"
 #include "recomendador.hpp"
 
-
-
+// Función principal
 int main() {
     srand(time(nullptr));
     vector<Song> spotifySongs;
     cargaDatos(spotifySongs);
-    /*for(Song s: spotifySongs){
-      cout << s.posicion << " " << s.nombreArtista << " " << s.nombreCancion << " " << s.diasTop10 << " " << s.diasTop10 << " " << s.posicionMax << " " << s.streamMax << " " <<s.streamTotales << " " << s.genero << endl;
-    }*/
+
+    // Crear objeto Recomendador
     Recomendador recom(spotifySongs);
     int option = 2;
+
+    // Menú de opciones
     while (option != 0) {
         option = menu();
         switch (option) {
@@ -43,9 +40,11 @@ int main() {
         }
     }
 
+
     return 0;
 }
 
+// Función para mostrar el menú y obtener la opción elegida por el usuario
 int menu() {
     int opcion;
     cout << "========== Menú ==========" << endl;
@@ -59,19 +58,22 @@ int menu() {
     return opcion;
 }
 
-
-
+// Función para cargar los datos de las canciones desde un archivo
 void cargaDatos(vector<Song>& songs) {
     ifstream archivo;
     archivo.open("data/Spotify_final_dataset.txt");
     if (archivo.is_open()) {
         string temp;
         getline(archivo, temp);
+
+        // Leer cada línea del archivo y crear objetos Song
         while (getline(archivo, temp)) {
             Song song;
             int campo = 0;
             size_t pos = 0;
             string delimiter = "   ";
+
+            // Dividir la línea en campos usando el delimitador
             while ((pos = temp.find(delimiter)) != string::npos) {
                 string token = temp.substr(0, pos);
                 switch (campo) {
@@ -91,6 +93,7 @@ void cargaDatos(vector<Song>& songs) {
             song.genero = temp;
             songs.push_back(song);
         }
+
         int numCanciones = songs.size();
         cout << "Se han cargado los datos de " << numCanciones << " canciones." << endl;
         archivo.close();
@@ -98,4 +101,3 @@ void cargaDatos(vector<Song>& songs) {
         cout << "No se ha podido abrir el archivo" << endl;
     }
 }
-

@@ -42,7 +42,7 @@ public:
     Rankings Rankings2(vector<Song> songs);
 
     // Método para obtener el Ranking 3 y devuelve un vector de pares de cadenas y enteros
-    vector<pair<string, int>> Rankings3(vector<Song> songs);
+    vector<pair <string, int> > Rankings3(vector<Song> songs);
 };
 
 #endif // !ANALIZADOR_HPP
