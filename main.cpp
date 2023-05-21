@@ -10,9 +10,9 @@ int main() {
     srand(time(nullptr));
     vector<Song> spotifySongs;
     cargaDatos(spotifySongs);
-    for(Song s: spotifySongs){
+    /*for(Song s: spotifySongs){
       cout << s.posicion << " " << s.nombreArtista << " " << s.nombreCancion << " " << s.diasTop10 << " " << s.diasTop10 << " " << s.posicionMax << " " << s.streamMax << " " <<s.streamTotales << " " << s.genero << endl;
-    }
+    }*/
     Recomendador recom(spotifySongs);
     int option = 2;
     while (option != 0) {

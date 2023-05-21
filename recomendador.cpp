@@ -64,19 +64,35 @@ void Recomendador::mostrarArtistasRec(vector<Song> songs) {
 }
 */
 
-void Recomendador::analizarCancion(vector<Song> songs) {
+void Recomendador::analizarCancion(const vector<Song>& songs) {
     string cancion;
 
     cout << "Introduce el nombre de la canción que quieres analizar: " << endl;
-    cin >> cancion;
+    //cin >> cancion;
+    cin.ignore(); // Ignorar cualquier caracter residual en el buffer de entrada
+    getline(cin, cancion);
 
     // Buscar la canción por nombre en el vector songs
-    auto it = find_if(songs.begin(), songs.end(), [&](const Song& s) {
+    /*auto it = find_if(songs.begin(), songs.end(), [&](const Song& s) {
         return s.nombreCancion == cancion;
+    });*/
+    // Buscar la canción por nombre en el vector songs
+string cancionMinusculas = cancion;
+transform(cancionMinusculas.begin(), cancionMinusculas.end(), cancionMinusculas.begin(), [](unsigned char c) {
+    return std::tolower(c);
+});
+
+auto it = find_if(songs.begin(), songs.end(), [&](const Song& s) {
+    string nombreCancionMinusculas = s.nombreCancion;
+    transform(nombreCancionMinusculas.begin(), nombreCancionMinusculas.end(), nombreCancionMinusculas.begin(), [](unsigned char c) {
+        return std::tolower(c);
     });
+    return nombreCancionMinusculas.find(cancionMinusculas) != string::npos;
+});
+
 
     if (it != songs.end()) {
-        // La canción fue encontrada
+       
         const Song& cancionEncontrada = *it;
 
         cout << "--------------------------------------\n";
@@ -86,7 +102,7 @@ void Recomendador::analizarCancion(vector<Song> songs) {
         cout << "Género: " << cancionEncontrada.genero << endl;
         cout << "Streams Totales: " << cancionEncontrada.streamTotales << endl;
     } else {
-        // La canción no fue encontrada
+        
         cout << "Canción no encontrada." << endl;
     }
 }
@@ -103,20 +119,43 @@ void Recomendador::mostrarRanking(vector<Song> songs) {
     cin >> opcion;
 
     switch (opcion) {
-        case 1: {   // Ranking de canciones por cantante
+        /*case 1: {   // Ranking de canciones por cantante
             Rankings r1 = a.Rankings1(songs);
             cout << "-----------------------------------------------\n";
             cout << "Ranking de canciones de " << r1.str << endl;
             cout << "-----------------------------------------------\n";
             for (int i = 0; i < r1.posiciones.size(); i++) {
                 r1.cancioness.push_back(songs[r1.posiciones[i]]);
+                r1.cancioness[i].posicion = contadorPosicion; // Asignar la posición actualizada
                 cout << r1.cancioness[i].posicion << ". " << r1.cancioness[i].nombreCancion << endl;
+                contadorPosicion++; // Incrementar el contador de posición
             }
             r1.posiciones.clear();
             r1.cancioness.clear();
             break;
+        }*/
+        
+        case 1: {
+        Rankings r1 = a.Rankings1(songs);
+        cout << "-----------------------------------------------\n";
+        cout << "Ranking de canciones de " << r1.str << endl;
+        cout << "-----------------------------------------------\n";
+        
+        int contadorPosicion = 1; // Inicializar el contador de posición
+
+        for (int i = 0; i < r1.posiciones.size(); i++) {
+            r1.cancioness.push_back(songs[r1.posiciones[i]]);
+            r1.cancioness[i].posicion = contadorPosicion; // Asignar la posición actualizada
+            cout << r1.cancioness[i].posicion << ". " << r1.cancioness[i].nombreCancion << endl;
+            contadorPosicion++; // Incrementar el contador de posición
         }
-        case 2: {    // Ranking de canciones por género
+        
+        r1.posiciones.clear();
+        r1.cancioness.clear();
+        break;
+    }
+
+        /*case 2: {    // Ranking de canciones por género
             Rankings r1 = a.Rankings2(songs);
             cout << "-----------------------------------------------\n";
             cout << "Ranking de canciones de " << r1.str << endl;
@@ -128,9 +167,30 @@ void Recomendador::mostrarRanking(vector<Song> songs) {
             r1.posiciones.clear();
             r1.cancioness.clear();
             break;
-        }
+        }*/
+
+        case 2: {
+    Rankings r1 = a.Rankings2(songs);
+    cout << "-----------------------------------------------\n";
+    cout << "Ranking de canciones de " << r1.str << endl;
+    cout << "-----------------------------------------------\n";
+    
+    int contadorPosicion = 1; // Inicializar el contador de posición
+
+    for (int i = 0; i < r1.posiciones.size(); i++) {
+        r1.cancioness.push_back(songs[r1.posiciones[i]]);
+        r1.cancioness[i].posicion = contadorPosicion; // Asignar la posición actualizada
+        cout << r1.cancioness[i].posicion << ". " << r1.cancioness[i].nombreCancion << endl;
+        contadorPosicion++; // Incrementar el contador de posición
+    }
+    
+    r1.posiciones.clear();
+    r1.cancioness.clear();
+    break;
+}
+
         case 3: {   // Ranking de cantantes por género
-            vector<pair<string, int>> r3 = a.Rankings3(songs);
+            vector<pair <string,int> > r3 = a.Rankings3(songs);
             for (int i = 0; i < r3.size(); i++) {
                 cout << i + 1 << ". " << r3[i].first << " Con un total de " << r3[i].second << " streams totales" << endl;
             }

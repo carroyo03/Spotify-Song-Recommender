@@ -7,34 +7,42 @@
 #include <vector>
 #include "main.hpp"
 
+// Definición de la estructura Rankings
+typedef struct {
+    vector<Song> cancioness;   
+    vector<int> posiciones;    
+    string str;                
+} Rankings;
 
-typedef struct{
-    vector <Song> cancioness;
-    vector <int> posiciones;
-    string str;
-}Rankings;
-
-// Clase abstracta que contendrá el vector songs
-class database
-{
-    protected:
-        vector <Song> songs;
-        
-
+// Clase abstracta database que contendrá el vector songs
+class database {
+protected:
+    vector<Song> songs;  
 };
 
-class Analizador: public database{
+// Clase Analizador que hereda de la clase database
+class Analizador : public database {
+public:
+    // Constructor de la clase Analizador
+    Analizador(vector<Song> songs);
 
-    public:
-        //using database::database;
-        Analizador(vector <Song> songs);
-        ~Analizador();
-        vector <string> analizarCancionesRec(vector <Song> songs);
-        vector <string> analizarArtistasRec(vector <Song> songs);
-        Rankings Rankings1(vector <Song> songs);
-        Rankings Rankings2(vector <Song> songs);
-        vector <pair <string,int> > Rankings3(vector <Song> songs);
+    // Destructor de la clase Analizador
+    ~Analizador();
+
+    // Método para analizar canciones recursivamente
+    vector<string> analizarCancionesRec(vector<Song> songs);
+
+    // Método para analizar artistas 
+    vector<string> analizarArtistasRec(vector<Song> songs);
+
+    // Método para obtener el Ranking 1 y devuelve un Ranking
+    Rankings Rankings1(vector<Song> songs);
+
+    // Método para obtener el Ranking 2 y devuelve un Ranking
+    Rankings Rankings2(vector<Song> songs);
+
+    // Método para obtener el Ranking 3 y devuelve un vector de pares de cadenas y enteros
+    vector<pair<string, int>> Rankings3(vector<Song> songs);
 };
-
 
 #endif // !ANALIZADOR_HPP

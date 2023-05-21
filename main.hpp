@@ -9,9 +9,7 @@
 
 using namespace std;
 
-
-
-  
+// Definición de la estructura Song
 typedef struct {
     int posicion;
     string nombreArtista;
@@ -23,10 +21,10 @@ typedef struct {
     string genero;
 } Song;
 
-
-
+// Declaración de la función menu
 int menu();
 
+// Declaración de la función cargaDatos
 void cargaDatos(vector<Song>& songs);
 
 #endif // !MAIN_HPP
