@@ -3,5 +3,6 @@
 **/.DS_Store
 **.
 **/build
+**/build/debug
 **/main.DSYM
 **.o
