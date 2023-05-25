@@ -1,22 +1,23 @@
+
 #include "analizador.hpp"
 #include <set>
 #include <map>
 
-Analizador::Analizador(vector <Song> songss){
+Analizador::Analizador(vector<Song>* songss) {
     songs = songss;
 }
 
-Analizador::~Analizador(){}
+Analizador::~Analizador() {}
 
-vector <string> Analizador::analizarCancionesRec(vector <Song> songs){
-    string genero; 
-    vector <string> generos; 
+vector<string> Analizador::analizarCancionesRec(vector<Song>* songs) {
+    string genero;
+    vector<string> generos;
     bool encontrado = false;
-    vector <int> posiciones;
-    vector <string> cancionesRec;
+    vector<int> posiciones;
+    vector<string> cancionesRec;
 
     // Obtener todos los géneros de las canciones disponibles
-    for (Song s : songs){
+    for (Song s : *songs) {
         generos.push_back(s.genero);
     }
 
@@ -25,14 +26,14 @@ vector <string> Analizador::analizarCancionesRec(vector <Song> songs){
     cin >> genero;
 
     // Validar que el género introducido por el usuario exista en la lista de géneros disponibles
-    do{
-        encontrado = find(begin(generos), end(generos),genero) != end(generos);
-        if(!encontrado){
+    do {
+        encontrado = find(begin(generos), end(generos), genero) != end(generos);
+        if (!encontrado) {
             cout << "Género no encontrado. " <<
-                    "Introduce el nombre de un género musical para que te podamos recomendar canciones que te puedan gustar: \n";
+                "Introduce el nombre de un género musical para que te podamos recomendar canciones que te puedan gustar: \n";
             cin >> genero;
         }
-    }while(!encontrado);
+    } while (!encontrado);
 
     // Obtener las posiciones de las canciones que coinciden con el género seleccionado
     auto it = find(generos.begin(), generos.end(), genero);
@@ -47,8 +48,8 @@ vector <string> Analizador::analizarCancionesRec(vector <Song> songs){
     // Seleccionar aleatoriamente 5 canciones del género seleccionado
     for (int i = 0; i < 5; i++) {
         int j = rand() % posiciones.size();
-        string cancionActual = songs[posiciones[j]].nombreCancion;
-        
+        string cancionActual = (*songs)[posiciones[j]].nombreCancion;
+
         // Verificar si la canción actual ya está en cancionesRec
         bool cancionRepetida = false;
         for (string s : cancionesRec) {
@@ -57,93 +58,100 @@ vector <string> Analizador::analizarCancionesRec(vector <Song> songs){
                 break;
             }
         }
-        
+
         // Verificar si ya se seleccionaron todas las canciones disponibles para el género
         if (cancionRepetida && cancionesRec.size() >= posiciones.size()) {
             break;
         }
-        
+
         // Si la canción está repetida, seleccionar otra posición
         if (cancionRepetida) {
             i--;
             continue;
         }
-        
+
         cancionesRec.push_back(cancionActual);
     }
 
     return cancionesRec;
 }
 
-vector <string> Analizador::analizarArtistasRec(vector <Song> songs){
-    vector <string> generos; 
-    string genero; 
+vector<string> Analizador::analizarArtistasRec(vector<Song>* songs) {
+    vector<string> generos;
+    string genero;
     bool encontrado = false;
-    
-    vector <int> posiciones;
-    vector <string> artistasRec; 
-    
+
+    vector<int> posiciones;
+    vector<string> artistasRec;
+
     // Obtener todos los géneros de las canciones disponibles
-    for (Song s : songs){
+    for (Song s : *songs) {
         generos.push_back(s.genero);
     }
-    
+
     // Solicitar al usuario un género musical que le guste
-    cout << "Para poder recomendarte artistas, necesitamos que introduzcas un género musical que te guste (RAP, POP, INDIE, SOUL o COUNTRY): " << endl;
+    cout << "Para poder recomendarte artistas necesitamos que introduzcas un género musical que te guste (RAP, POP, INDIE, SOUL o COUNTRY): " << endl;
     cin >> genero;
 
-    // Verificar que el género introducido por el usuario exista en la lista de géneros disponibles
-    do{
-        encontrado = find(begin(generos), end(generos),genero) != end(generos);
-        if(!encontrado){
-            cout << "Género no encontrado. " <<
-                    "Introduce el nombre de un género musical para que te podamos recomendar artistas que te puedan gustar: \n";
-            cin >> genero;
-        }
-    }while(!encontrado);
+    // Validar que el género introducido por el usuario exista en la lista de géneros disponibles
+do {
+    encontrado = find(begin(generos), end(generos), genero) != end(generos);
+    if (!encontrado) {
+        cout << "Género no encontrado. " <<
+            "Introduce el nombre de un género musical para que te podamos recomendar artistas que te puedan gustar: \n";
+        cin >> genero;
+    }
+} while (!encontrado);
 
-    // Obtener las posiciones de las canciones que coinciden con el género seleccionado
-    auto it = find(generos.begin(), generos.end(), genero);
+// Obtener las posiciones de las canciones que coinciden con el género seleccionado
+auto it = find(generos.begin(), generos.end(), genero);
+int pos = distance(generos.begin(), it);
+
+while (it != generos.end()) {
     int pos = distance(generos.begin(), it);
-
-    while (it != generos.end()) {
-        int pos = distance(generos.begin(), it);
-        posiciones.push_back(pos);
-        it = find(++it, generos.end(), genero);
-    }
-    
-    // Seleccionar aleatoriamente 5 artistas del género seleccionado
-    for (int i = 0; i < 5; i++) {
-        int j = rand() % posiciones.size();
-        string artistaActual = songs[posiciones[j]].nombreArtista;
-        
-        // Verificar si el artista actual ya está en artistasRec
-        bool artistaRepetido = false;
-        for (string s : artistasRec) {
-            if (s == artistaActual) {
-                artistaRepetido = true;
-                break;
-            }
-        }
-        
-        // Verificar si ya se seleccionaron todos los artistas disponibles para el género
-        if (artistaRepetido && artistasRec.size() >= posiciones.size()) {
-            break;
-        }
-        
-        // Si el artista está repetido, seleccionar otra posición
-        if (artistaRepetido) {
-            i--;
-            continue;
-        }
-        
-        artistasRec.push_back(artistaActual);
-    }
-    
-    return artistasRec;
+    posiciones.push_back(pos);
+    it = find(++it, generos.end(), genero);
 }
 
-Rankings Analizador::Rankings1(vector <Song> songs){
+// Obtener los artistas de las canciones que coinciden con el género seleccionado
+set<string> artistasSet;
+for (int pos : posiciones) {
+    artistasSet.insert((*songs)[pos].nombreArtista);
+}
+
+// Seleccionar aleatoriamente 3 artistas del género seleccionado
+for (int i = 0; i < 3; i++) {
+    int j = rand() % artistasSet.size();
+    auto it = artistasSet.begin();
+    advance(it, j);
+    string artistaActual = *it;
+
+    // Verificar si el artista actual ya está en artistasRec
+    bool artistaRepetido = false;
+    for (string s : artistasRec) {
+        if (s == artistaActual) {
+            artistaRepetido = true;
+            break;
+        }
+    }
+
+    // Verificar si ya se seleccionaron todos los artistas disponibles para el género
+    if (artistaRepetido && artistasRec.size() >= artistasSet.size()) {
+        break;
+    }
+
+    // Si el artista está repetido, seleccionar otro artista
+    if (artistaRepetido) {
+        i--;
+        continue;
+    }
+
+    artistasRec.push_back(artistaActual);
+}
+
+return artistasRec;
+}
+Rankings Analizador::Rankings1(vector <Song>* songs){
     int opcion; 
     bool encontrado = false;
     vector <Song> canciones;
@@ -152,7 +160,7 @@ Rankings Analizador::Rankings1(vector <Song> songs){
     vector <int> posiciones;
 
     // Obtener todos los nombres de los cantantes de las canciones disponibles
-    for (Song s : songs){
+    for (Song s : *songs){
         cantantes.push_back(s.nombreArtista);
     }
 
@@ -189,7 +197,7 @@ Rankings Analizador::Rankings1(vector <Song> songs){
     return r;
 }
 
-Rankings Analizador::Rankings2(vector <Song> songs){
+Rankings Analizador::Rankings2(vector <Song>* songs){
     int opcion; 
     bool encontrado = false;
     vector <Song> canciones;
@@ -198,7 +206,7 @@ Rankings Analizador::Rankings2(vector <Song> songs){
     vector <int> posiciones;
 
     // Obtener todos los géneros de las canciones disponibles
-    for (Song s : songs){
+    for (Song s : *songs){
         generos.push_back(s.genero);
     }
 
@@ -234,14 +242,14 @@ Rankings Analizador::Rankings2(vector <Song> songs){
     return r;
 }
 
-vector<pair<string, int> > Analizador::Rankings3(vector<Song> songs) {
+vector<pair<string, int> > Analizador::Rankings3(vector<Song>* songs) {
     int opcion;
     bool encontrado = false;
     vector<string> generos;
     string genero;
 
     // Obtener todos los géneros de las canciones disponibles
-    for (Song s : songs) {
+    for (Song s : *songs) {
         generos.push_back(s.genero);
     }
 
@@ -265,7 +273,7 @@ vector<pair<string, int> > Analizador::Rankings3(vector<Song> songs) {
     map<string, int> artistCounts;
 
     // Contar la cantidad de veces que aparece cada artista en el género seleccionado
-    for (Song s : songs) {
+    for (Song s : *songs) {
         if (s.genero == genero) {
             artistCounts[s.nombreArtista]++;
         }
@@ -281,3 +289,7 @@ vector<pair<string, int> > Analizador::Rankings3(vector<Song> songs) {
 
     return artistRanking;
 }
+//Definicón de clearConsole, mencionada en comentario de analizador.hpp
+void clearConsole(){ 
+    system("printf \"\\033c\""); 
+} 
