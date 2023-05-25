@@ -2,7 +2,7 @@
 **/datos.DSYM
 **/.DS_Store
 **.
-**/build/
+**/build/debug/*.o
 **/build/*
 **/main.DSYM
 **.o
