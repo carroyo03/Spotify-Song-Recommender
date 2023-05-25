@@ -5,6 +5,7 @@
 using namespace std;
 
 // Función principal
+// @author Juan Carlos y Carlos
 int main() {
     srand(time(nullptr));
     vector<Song> spotifySongs;
@@ -52,6 +53,7 @@ int main() {
 }
 
 // Función para mostrar el menú y obtener la opción elegida por el usuario
+//@author Gabriel y Carlos
 int menu() {
     int opcion;
     cout << "========== Menú ==========" << endl;
@@ -67,7 +69,10 @@ int menu() {
     return opcion;
 }
 
+
+
 // Función para cargar los datos de las canciones desde un archivo
+// @author Gabriel y Carlos
 void cargaDatos(vector<Song>& songs) {
     ifstream archivo;
     archivo.open("../data/Spotify_final_dataset.txt");

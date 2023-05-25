@@ -9,7 +9,8 @@ Analizador::Analizador(vector<Song>* songss) {
 
 Analizador::~Analizador() {}
 
-vector<string> Analizador::analizarCancionesRec(vector<Song>* songs) {
+// @author Gabriel y Juan Carlos
+vector<string> Analizador::analizarCancionesRec(vector<Song>* songs) { 
     string genero;
     vector<string> generos;
     bool encontrado = false;
@@ -76,6 +77,8 @@ vector<string> Analizador::analizarCancionesRec(vector<Song>* songs) {
     return cancionesRec;
 }
 
+
+// @author Juan Carlos y Gabriel
 vector<string> Analizador::analizarArtistasRec(vector<Song>* songs) {
     vector<string> generos;
     string genero;
@@ -151,6 +154,7 @@ for (int i = 0; i < 3; i++) {
 
 return artistasRec;
 }
+//@author Gabriel y Carlos Arroyo
 Rankings Analizador::Rankings1(vector <Song>* songs){
     int opcion; 
     bool encontrado = false;
@@ -197,6 +201,8 @@ Rankings Analizador::Rankings1(vector <Song>* songs){
     return r;
 }
 
+
+// @author Gabriel, Carlos y Juan Carlos
 Rankings Analizador::Rankings2(vector <Song>* songs){
     int opcion; 
     bool encontrado = false;
@@ -242,6 +248,8 @@ Rankings Analizador::Rankings2(vector <Song>* songs){
     return r;
 }
 
+
+// @author Juan Carlos y Carlos
 vector<pair<string, int> > Analizador::Rankings3(vector<Song>* songs) {
     int opcion;
     bool encontrado = false;
@@ -289,7 +297,7 @@ vector<pair<string, int> > Analizador::Rankings3(vector<Song>* songs) {
 
     return artistRanking;
 }
-//Definicón de clearConsole, mencionada en comentario de analizador.hpp
+//Definición de clearConsole, mencionada en comentario de analizador.hpp
 void clearConsole(){ 
     system("printf \"\\033c\""); 
 } 

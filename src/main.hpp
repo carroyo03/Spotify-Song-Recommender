@@ -9,6 +9,8 @@
 
 using namespace std;
 
+//@author Carlos
+
 // Definición de la estructura Song
 typedef struct {
     int posicion;

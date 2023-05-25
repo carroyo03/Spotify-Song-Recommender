@@ -22,7 +22,10 @@ Recomendador* Recomendador::getInstance(vector<Song> songs) {
     return instance;
 }
 
+
+
 // Método para mostrar las canciones recomendadas
+//@author Carlos y Gabriel
 void Recomendador::mostrarCancionesRec(vector<Song> songs) {
     Analizador a(&songs);
     vector<string> cancionesRec = a.analizarCancionesRec(&songs);
@@ -35,6 +38,7 @@ void Recomendador::mostrarCancionesRec(vector<Song> songs) {
     }
 }
 
+//@author Gabriel y Juan Carlos
 // Método para mostrar los artistas recomendados
 void Recomendador::mostrarArtistasRec(vector<Song> songs) {
     Analizador a(&songs);
@@ -49,6 +53,7 @@ void Recomendador::mostrarArtistasRec(vector<Song> songs) {
     }
 }
 
+//@author Carlos, Gabriel y Juan Carlos
 // Método para analizar una canción
 void Recomendador::analizarCancion(const vector<Song>& songs) {
     string cancion;
@@ -87,6 +92,7 @@ void Recomendador::analizarCancion(const vector<Song>& songs) {
     }
 }
 
+//@author Juan Carlos, Gabriel y Carlos
 // Método para mostrar los rankings
 void Recomendador::mostrarRanking(vector<Song> songs) {
     int opcion;

@@ -1,10 +1,9 @@
-
-
 #ifndef RECOMENDADOR_HPP
 #define RECOMENDADOR_HPP
 
 #include "analizador.hpp"
 
+//@author Carlos 
 class Recomendador : public database {
 private:
     static Recomendador* instance;  // Variable estática para la instancia única

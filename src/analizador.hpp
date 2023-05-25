@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include "main.hpp"
 
+//@author Gabriel, Carlos y Juan Carlos 
+
 // Definición de la estructura Rankings
 typedef struct {
     vector<Song> cancioness;   
