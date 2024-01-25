@@ -36,4 +36,4 @@ Para compilar y ejecutar el proyecto, sigue los siguientes pasos:
 1. Abre una terminal en el directorio del proyecto.
 2. Ejecuta el comando de compilación, por ejemplo:
    ```shell
-   g++ main.cpp analizador.cpp recomendador.cpp -o analizador
+   g++ -std=c++11 main.cpp analizador.cpp recomendador.cpp -o analizador
